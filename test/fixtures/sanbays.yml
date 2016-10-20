@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  machuyenbay: MyString
+  tensanbay: MyString
+
+two:
+  machuyenbay: MyString
+  tensanbay: MyString
