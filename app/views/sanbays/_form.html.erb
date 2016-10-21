@@ -1,9 +1,27 @@
-<%= form_for @sanbay do |f| %>
-    <%= f.label :masanbay %><br>
-    <%= f.text_field :masanbay %><br>
-    <br>
-    <%= f.label :tensanbay %><br>
-    <%= f.text_field :tensanbay %><br>
-    <br>
+<%= form_for(sanbay) do |f| %>
+  <% if sanbay.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sanbay.errors.count, "error") %> prohibited this sanbay from being saved:</h2>
+
+      <ul>
+      <% sanbay.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :masanbay %>
+    <%= f.text_field :masanbay %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tensanbay %>
+    <%= f.text_field :tensanbay %>
+  </div>
+
+  <div class="actions">
     <%= f.submit %>
+  </div>
 <% end %>

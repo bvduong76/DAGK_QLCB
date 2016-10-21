@@ -10,19 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020190621) do
+ActiveRecord::Schema.define(version: 20161021064612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "sanbaydi_id"
-    t.integer  "sanbayden_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["sanbayden_id"], name: "index_relationships_on_sanbayden_id", using: :btree
-    t.index ["sanbaydi_id", "sanbayden_id"], name: "index_relationships_on_sanbaydi_id_and_sanbayden_id", unique: true, using: :btree
-    t.index ["sanbaydi_id"], name: "index_relationships_on_sanbaydi_id", using: :btree
+  create_table "hanhtrinhs", force: :cascade do |t|
+    t.integer "sanbaydi",  null: false
+    t.integer "sanbayden", null: false
+    t.index ["sanbaydi", "sanbayden"], name: "index_hanhtrinhs_on_sanbaydi_and_sanbayden", unique: true, using: :btree
   end
 
   create_table "sanbays", force: :cascade do |t|
@@ -30,4 +26,6 @@ ActiveRecord::Schema.define(version: 20161020190621) do
     t.string "tensanbay"
   end
 
+  add_foreign_key "hanhtrinhs", "sanbays", column: "sanbayden"
+  add_foreign_key "hanhtrinhs", "sanbays", column: "sanbaydi"
 end

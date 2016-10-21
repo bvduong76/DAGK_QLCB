@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sanbays</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Masanbay</th>
+      <th>Tensanbay</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sanbays.each do |sanbay| %>
+      <tr>
+        <td><%= sanbay.masanbay %></td>
+        <td><%= sanbay.tensanbay %></td>
+        <td><%= link_to 'Show', sanbay %></td>
+        <td><%= link_to 'Edit', edit_sanbay_path(sanbay) %></td>
+        <td><%= link_to 'Destroy', sanbay, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sanbay', new_sanbay_path %>

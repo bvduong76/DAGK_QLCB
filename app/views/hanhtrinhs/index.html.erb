@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hành trình</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sân bay đi</th>
+      <th>Sân bay đến</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hanhtrinhs.each do |hanhtrinh| %>
+      <tr>
+        <td><%= hanhtrinh.sanbaydi %></td>
+        <td><%= hanhtrinh.sanbayden %></td>
+        <td><%= link_to 'Show', hanhtrinh %></td>
+        <td><%= link_to 'Edit', edit_hanhtrinh_path(hanhtrinh) %></td>
+        <td><%= link_to 'Destroy', hanhtrinh, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Thêm', new_hanhtrinh_path %>

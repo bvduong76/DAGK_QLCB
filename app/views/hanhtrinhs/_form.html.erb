@@ -1,0 +1,27 @@
+<%= form_for(hanhtrinh) do |f| %>
+  <% if hanhtrinh.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hanhtrinh.errors.count, "error") %> prohibited this hanhtrinh from being saved:</h2>
+
+      <ul>
+      <% hanhtrinh.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sanbaydi %>
+    <%= f.text_field :sanbaydi %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sanbayden %>
+    <%= f.text_field :sanbayden %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

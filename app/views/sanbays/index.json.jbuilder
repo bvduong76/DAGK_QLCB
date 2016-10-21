@@ -1,0 +1,1 @@
+json.array! @sanbays, partial: 'sanbays/sanbay', as: :sanbay

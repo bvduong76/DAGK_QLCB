@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sân bay đi:</strong>
+  <%= @hanhtrinh.sanbaydi %>
+</p>
+
+<p>
+  <strong>Sân bay đến:</strong>
+  <%= @hanhtrinh.sanbayden %>
+</p>
+
+<%= link_to 'Edit', edit_hanhtrinh_path(@hanhtrinh) %> |
+<%= link_to 'Back', hanhtrinhs_path %>
