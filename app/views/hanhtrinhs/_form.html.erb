@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="control-group">
     <%= f.label :sanbaydi %>
-    <%= f.text_field :sanbaydi %>
+    <%= collection_select( :sanbays, :masanbay , Sanbay.all , :id, :tensanbay, {:prompt => true, :multiple=>true } ) %>
   </div>
 
   <div class="field">
     <%= f.label :sanbayden %>
-    <%= f.text_field :sanbayden %>
+    <%= collection_select( :sanbays, :masanbay , Sanbay.all , :id, :tensanbay, {:prompt => true, :multiple=>true } ) %>
   </div>
 
   <div class="actions">
