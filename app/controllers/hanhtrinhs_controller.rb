@@ -4,7 +4,7 @@ class HanhtrinhsController < ApplicationController
   # GET /hanhtrinhs
   # GET /hanhtrinhs.json
   def index
-    @hanhtrinhs = Hanhtrinh.all
+    @hanhtrinhs = Hanhtrinh.all.order('sanbaydi ASC')
   end
 
   # GET /hanhtrinhs/1

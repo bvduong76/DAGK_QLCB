@@ -2,12 +2,12 @@
 
 <p>
   <strong>Sân bay đi:</strong>
-  <%= @hanhtrinh.sanbaydi %>
+  <%= Sanbay.find(@hanhtrinh.sanbaydi).tensanbay %>
 </p>
 
 <p>
   <strong>Sân bay đến:</strong>
-  <%= @hanhtrinh.sanbayden %>
+  <%= Sanbay.find(@hanhtrinh.sanbayden).tensanbay %>
 </p>
 
 <%= link_to 'Edit', edit_hanhtrinh_path(@hanhtrinh) %> |

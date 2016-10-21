@@ -14,8 +14,8 @@
   <tbody>
     <% @hanhtrinhs.each do |hanhtrinh| %>
       <tr>
-        <td><%= hanhtrinh.sanbaydi %></td>
-        <td><%= hanhtrinh.sanbayden %></td>
+        <td><%= Sanbay.find(hanhtrinh.sanbaydi).masanbay %></td>
+        <td><%= Sanbay.find(hanhtrinh.sanbayden).masanbay %></td>
         <td><%= link_to 'Show', hanhtrinh %></td>
         <td><%= link_to 'Edit', edit_hanhtrinh_path(hanhtrinh) %></td>
         <td><%= link_to 'Destroy', hanhtrinh, method: :delete, data: { confirm: 'Are you sure?' } %></td>
