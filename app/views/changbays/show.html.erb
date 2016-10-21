@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ma:</strong>
+  <%= @changbay.ma %>
+</p>
+
+<p>
+  <strong>Noidi:</strong>
+  <%=  Sanbay.find(@changbay.noidi).masanbay %>
+</p>
+
+<p>
+  <strong>Noiden:</strong>
+  <%= Sanbay.find(@changbay.noiden).masanbay %>
+</p>
+
+<p>
+  <strong>Ngay:</strong>
+  <%= @changbay.ngay %>
+</p>
+
+<p>
+  <strong>Gio:</strong>
+  <%= @changbay.gio %>
+</p>
+
+<%= link_to 'Edit', edit_changbay_path(@changbay) %> |
+<%= link_to 'Back', changbays_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ma: MyString
+  noidi: 1
+  noiden: 1
+  ngay: 2016-10-21
+  gio: 2016-10-21 23:17:48
+
+two:
+  ma: MyString
+  noidi: 1
+  noiden: 1
+  ngay: 2016-10-21
+  gio: 2016-10-21 23:17:48

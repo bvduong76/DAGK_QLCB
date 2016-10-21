@@ -5,11 +5,22 @@ class HanhtrinhsController < ApplicationController
   # GET /hanhtrinhs.json
   def index
     @hanhtrinhs = Hanhtrinh.all.order('sanbaydi ASC')
+    respond_to do |format|
+
+      format.html # show.html.erb
+      format.json { render json: @hanhtrinhs }
+
+    end
   end
 
   # GET /hanhtrinhs/1
   # GET /hanhtrinhs/1.json
   def show
+    @hanhtrinh = Hanhtrinh.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @hanhtrinh }
+    end
   end
 
   # GET /hanhtrinhs/new

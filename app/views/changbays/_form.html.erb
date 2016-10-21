@@ -1,0 +1,45 @@
+<%= form_for(changbay) do |f| %>
+  <% if changbay.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(changbay.errors.count, "error") %> prohibited this changbay from being saved:</h2>
+
+      <ul>
+      <% changbay.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ma %>
+    <%= f.text_field :ma, placeholder: "BLxxx" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :noidi %>
+    <%= collection_select( :changbay, :noidi , Sanbay.all , :id, :tensanbay, {:prompt => true, :multiple=>true },
+                           {:onchange => remote_function(
+                               alert("Hello! I am an alert box!!")
+                           )}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :noiden %>
+    <%= collection_select( :changbay, :noiden , Sanbay.all , :id, :tensanbay, {:prompt => true, :multiple=>true } ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ngay %>
+    <%= f.date_select :ngay %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gio %>
+    <%= f.time_select :gio %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

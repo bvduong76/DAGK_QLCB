@@ -1,0 +1,1 @@
+json.array! @changbays, partial: 'changbays/changbay', as: :changbay

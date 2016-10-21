@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021064612) do
+ActiveRecord::Schema.define(version: 20161021161736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "changbays", force: :cascade do |t|
+    t.string  "ma"
+    t.integer "noidi",  null: false
+    t.integer "noiden", null: false
+    t.date    "ngay",   null: false
+    t.time    "gio",    null: false
+    t.index ["noidi", "noiden", "ngay", "gio"], name: "index_changbays_on_noidi_and_noiden_and_ngay_and_gio", unique: true, using: :btree
+  end
 
   create_table "hanhtrinhs", force: :cascade do |t|
     t.integer "sanbaydi",  null: false
@@ -26,6 +35,8 @@ ActiveRecord::Schema.define(version: 20161021064612) do
     t.string "tensanbay"
   end
 
+  add_foreign_key "changbays", "sanbays", column: "noiden"
+  add_foreign_key "changbays", "sanbays", column: "noidi"
   add_foreign_key "hanhtrinhs", "sanbays", column: "sanbayden"
   add_foreign_key "hanhtrinhs", "sanbays", column: "sanbaydi"
 end

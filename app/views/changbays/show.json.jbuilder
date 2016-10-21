@@ -1,0 +1,1 @@
+json.partial! "changbays/changbay", changbay: @changbay

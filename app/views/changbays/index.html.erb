@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Chặng bay</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mã </th>
+      <th>Nơi đi </th>
+      <th>Nơi đến</th>
+      <th>Ngày</th>
+      <th>Giờ</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @changbays.each do |changbay| %>
+      <tr>
+        <td><%= changbay.ma %></td>
+        <td><%= Sanbay.find(changbay.noidi).masanbay %></td>
+        <td><%= Sanbay.find(changbay.noiden).masanbay %></td>
+        <td><%= changbay.ngay %></td>
+        <td><%= changbay.gio.strftime("%H:%M") %></td>
+        <td><%= link_to 'Show', changbay %></td>
+        <td><%= link_to 'Edit', edit_changbay_path(changbay) %></td>
+        <td><%= link_to 'Destroy', changbay, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Changbay', new_changbay_path %>
