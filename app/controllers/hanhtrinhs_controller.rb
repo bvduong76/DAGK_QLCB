@@ -5,11 +5,15 @@ class HanhtrinhsController < ApplicationController
   # GET /hanhtrinhs.json
   def index
     @hanhtrinhs = Hanhtrinh.all.order('sanbaydi ASC')
-    respond_to do |format|
-
-      format.html # show.html.erb
-      format.json { render json: @hanhtrinhs }
-
+    if @noidi = params[:noidi]
+      puts @noidi
+       @noidens = @hanhtrinhs.where(sanbaydi: @noidi)
+       render json: @noidens
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @hanhtrinhs }
+      end
     end
   end
 
@@ -72,14 +76,20 @@ class HanhtrinhsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hanhtrinh
-      @hanhtrinh = Hanhtrinh.find(params[:id])
-    end
+  def getsanbayden
+    @tencbx = params[:noidi]
+    @sbdi = Sanbay.all.where(tensanbay: @tencbx).first
+    render json: @sbdi
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def hanhtrinh_params
-      params.require(:hanhtrinh).permit(:sanbaydi, :sanbayden)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_hanhtrinh
+    @hanhtrinh = Hanhtrinh.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def hanhtrinh_params
+    params.require(:hanhtrinh).permit(:sanbaydi, :sanbayden)
+  end
 end

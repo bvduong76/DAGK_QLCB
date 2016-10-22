@@ -60,7 +60,11 @@ class ChangbaysController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def getsanbayden
+    @tencbx = params[:noidi]
+    @sbdi = Sanbay.all.where(tensanbay: @tencbx).first
+    render json: @sbdi
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_changbay
