@@ -1,0 +1,33 @@
+<%= form_for(chuyenbay) do |f| %>
+  <% if chuyenbay.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chuyenbay.errors.count, "error") %> prohibited this chuyenbay from being saved:</h2>
+
+      <ul>
+      <% chuyenbay.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :machangbay %>
+    <%= f.text_field :machangbay %>
+  </div>
+
+  <div class="field">
+    <%= f.label :giaban %>
+    <%= f.text_field :giaban %>
+  </div>
+
+  <div class="field">
+    <%= f.label :soluong %>
+    <%= f.number_field :soluong %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

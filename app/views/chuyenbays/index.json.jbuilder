@@ -1,0 +1,1 @@
+json.array! @chuyenbays, partial: 'chuyenbays/chuyenbay', as: :chuyenbay

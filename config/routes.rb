@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chuyenbays
   resources :changbays
   resources :hanhtrinhs
   resources :sanbays

@@ -1,45 +1,64 @@
 <%= form_for(changbay) do |f| %>
-  <% if changbay.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(changbay.errors.count, "error") %> prohibited this changbay from being saved:</h2>
+    <% if changbay.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(changbay.errors.count, "error") %> prohibited this changbay from being saved:</h2>
 
-      <ul>
-      <% changbay.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% changbay.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :ma %>
+      <%= f.text_field :ma, placeholder: "BLxxx" %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :ma %>
-    <%= f.text_field :ma, placeholder: "BLxxx" %>
-  </div>
+    <div class="field">
+      <%= f.label :noidi %>
+      <%= collection_select(:changbay, :noidi, Sanbay.all, :id, :tensanbay, options={:prompt => 'Chọn sân bay', :multiple => true}, {:id => 'noidi'}) %>
+    </div>
 
-  <div class="field">
-    <%= f.label :noidi %>
-    <%= collection_select( :changbay, :noidi , Sanbay.all , :id, :tensanbay, {:prompt => true, :multiple=>true },
-                           {:onchange => remote_function(
-                               alert("Hello! I am an alert box!!")
-                           )}) %>
-  </div>
 
-  <div class="field">
-    <%= f.label :noiden %>
-    <%= collection_select( :changbay, :noiden , Sanbay.all , :id, :tensanbay, {:prompt => true, :multiple=>true } ) %>
-  </div>
+    <div class="field">
+      <%= f.label :noiden %>
+      <%= collection_select(:changbay, :noiden, Sanbay.all, :id, :tensanbay, options={:prompt => 'Chọn sân bay', :multiple => true}, {:id => 'noiden'}) %>
 
-  <div class="field">
-    <%= f.label :ngay %>
-    <%= f.date_select :ngay %>
-  </div>
+    </div>
+    <script>
+      $('#noidi').on('change', function () {
+        var url = '/hanhtrinhs?noidi=' + $(this).val();
+        $("#noiden").empty();
+        $.get(url, function (data) {
+          $.each(data, function (key, val) {
+            $.getJSON('/sanbays/' + val.sanbayden, function (data1) {
+              console.log(data1);
+              console.log("===");
+              console.log(data1.tensanbay);
+              $('#noiden').append($('<option>', {
+                value: val.sanbayden,
+                text: data1.tensanbay
+              }));
+            });
+          });
+        });
+      });
 
-  <div class="field">
-    <%= f.label :gio %>
-    <%= f.time_select :gio %>
-  </div>
+    </script>
+    <div class="field">
+      <%= f.label :ngay %>
+      <%= f.date_select :ngay %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :gio %>
+      <%= f.time_select :gio %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
 <% end %>
