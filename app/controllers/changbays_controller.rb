@@ -5,6 +5,10 @@ class ChangbaysController < ApplicationController
   # GET /changbays.json
   def index
     @changbays = Changbay.all.order('ma ASC')
+    if @machangbay = params[:machangbay]
+      @info =@changbays.where(id: @machangbay)
+      render json: @info
+    end
   end
 
   # GET /changbays/1
@@ -60,19 +64,21 @@ class ChangbaysController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def getsanbayden
     @tencbx = params[:noidi]
     @sbdi = Sanbay.all.where(tensanbay: @tencbx).first
     render json: @sbdi
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_changbay
-      @changbay = Changbay.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def changbay_params
-      params.require(:changbay).permit(:ma, :noidi, :noiden, :ngay, :gio)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_changbay
+    @changbay = Changbay.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def changbay_params
+    params.require(:changbay).permit(:ma, :noidi, :noiden, :ngay, :gio)
+  end
 end

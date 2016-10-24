@@ -1,33 +1,63 @@
 <%= form_for(chuyenbay) do |f| %>
-  <% if chuyenbay.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(chuyenbay.errors.count, "error") %> prohibited this chuyenbay from being saved:</h2>
+    <% if chuyenbay.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(chuyenbay.errors.count, "error") %> prohibited this chuyenbay from being saved:</h2>
 
-      <ul>
-      <% chuyenbay.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% chuyenbay.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= f.label :machangbay %>
+      <%= collection_select(:chuyenbay, :machangbay, Changbay.all.order('ma ASC'), :id, :ma,
+                            options={:prompt => 'Chọn chặng bay', :multiple => true}, {:id => 'cbxchangbay'}) %>
     </div>
-  <% end %>
+    <div id="infochangbay">
 
+    </div>
+    <div id="infothoigian"></div>
+    <script>
+      $(document).ready(function () {
+        $('#infochangbay').hide();
 
-  <div class="field">
-    <%= f.label :machangbay %>
-    <%= f.text_field :machangbay %>
-  </div>
+      });
+      $('#cbxchangbay').on('change', function () {
+        $('#infochangbay').show().slow;
+        var str1 = '';
+        var url = '/changbays?machangbay=' + $(this).val();
+        $.get(url, function (data) {
 
-  <div class="field">
-    <%= f.label :giaban %>
-    <%= f.text_field :giaban %>
-  </div>
+          $.each(data, function (key, val) {
+            $.getJSON('/sanbays/' + val.noidi, function (data1) {
+              str1 = '<label>Sân bay đi</label><input value="' + data1.masanbay + '"disabled>';
+              $.getJSON('/sanbays/' + val.noiden, function (data2) {
+                str1 += '<label>Sân bay đến</label><input value="' + data2.masanbay + '"disabled>';
+                $('#infochangbay').html(str1);
+              });
+            });
+            var str2 = '<label>Ngày đi</label><input value="' + val.ngay + '"disabled>'
+                + '<label>Giờ đi</label><input value="' + val.gio + '"disabled>';
+            $('#infothoigian').html(str2);
+          })
+        });
+      });
+    </script>
+    <div class="field">
+      <%= f.label :giaban %>
+      <%= f.text_field :giaban %>
+    </div>
 
-  <div class="field">
-    <%= f.label :soluong %>
-    <%= f.number_field :soluong %>
-  </div>
+    <div class="field">
+      <%= f.label :soluong %>
+      <%= f.number_field :soluong %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

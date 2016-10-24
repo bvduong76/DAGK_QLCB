@@ -18,8 +18,10 @@
 
     <div class="field">
       <%= f.label :noidi %>
-      <%= collection_select(:changbay, :noidi, Sanbay.all, :id, :tensanbay, options={:prompt => 'Chọn sân bay', :multiple => true}, {:id => 'noidi'}) %>
+      <%= collection_select(:changbay, :noidi, Sanbay.all, :id, :tensanbay,
+                            options={:prompt => 'Chọn sân bay', :multiple => true}, {:id => 'noidi'}) %>
     </div>
+
 
 
     <div class="field">

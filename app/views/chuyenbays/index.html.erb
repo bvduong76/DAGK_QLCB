@@ -6,6 +6,10 @@
   <thead>
     <tr>
       <th>Machangbay</th>
+      <th>Sanbaydi</th>
+      <th>Sanbayden</th>
+      <th>Ngay</th>
+      <th>Gio</th>
       <th>Giaban</th>
       <th>Soluong</th>
       <th colspan="3"></th>
@@ -15,8 +19,11 @@
   <tbody>
     <% @chuyenbays.each do |chuyenbay| %>
       <tr>
-
-        <td><%= chuyenbay.machangbay %></td>
+        <td><%= Changbay.find(chuyenbay.machangbay).ma %></td>
+        <td><%= Sanbay.find(Changbay.find(chuyenbay.machangbay).noidi).masanbay %></td>
+        <td><%= Sanbay.find(Changbay.find(chuyenbay.machangbay).noiden).masanbay %></td>
+        <td><%= Changbay.find(chuyenbay.machangbay).ngay %></td>
+        <td><%= Changbay.find(chuyenbay.machangbay).gio.strftime("%H:%M") %></td>
         <td><%= chuyenbay.giaban %></td>
         <td><%= chuyenbay.soluong %></td>
         <td><%= link_to 'Show', chuyenbay %></td>
