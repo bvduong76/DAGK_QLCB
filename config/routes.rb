@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'datchos/index'
+  get 'datves/index'
+
 
   resources :chuyenbays
   resources :changbays

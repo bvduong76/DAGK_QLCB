@@ -24,7 +24,7 @@
         <td><%= Sanbay.find(Changbay.find(chuyenbay.machangbay).noiden).masanbay %></td>
         <td><%= Changbay.find(chuyenbay.machangbay).ngay %></td>
         <td><%= Changbay.find(chuyenbay.machangbay).gio.strftime("%H:%M") %></td>
-        <td><%= chuyenbay.giaban %></td>
+        <td><%= chuyenbay.giaban.round(0) %></td>
         <td><%= chuyenbay.soluong %></td>
         <td><%= link_to 'Show', chuyenbay %></td>
         <td><%= link_to 'Edit', edit_chuyenbay_path(chuyenbay) %></td>
