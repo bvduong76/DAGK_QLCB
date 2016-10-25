@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'datves/index'
-
-
+  resources :datves
   resources :chuyenbays
   resources :changbays
   resources :hanhtrinhs

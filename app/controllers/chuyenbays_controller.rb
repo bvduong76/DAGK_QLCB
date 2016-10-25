@@ -4,7 +4,18 @@ class ChuyenbaysController < ApplicationController
   # GET /chuyenbays
   # GET /chuyenbays.json
   def index
-    @chuyenbays = Chuyenbay.all
+    @chuyenbays = Chuyenbay.all.order('machangbay ASC')
+
+    if @sbdi = params[:di] and   @sbden = params[:den] and  @ngaydi = params[:ngaydi] and @soluong = params[:soluong]
+
+      @noidiObj = Sanbay.all.where(tensanbay: @sbdi).first
+      @noidenObj = Sanbay.all.where(tensanbay: @sbden).first
+
+      @temps = Changbay.where(noidi: @noidiObj, noiden: @noidenObj,ngay:  @ngaydi)
+
+      #@temp = Changbay.all.where(noidi: )
+      render json: @temps
+    end
   end
 
   # GET /chuyenbays/1
