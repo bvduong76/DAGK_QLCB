@@ -6,15 +6,14 @@ class ChuyenbaysController < ApplicationController
   def index
     @chuyenbays = Chuyenbay.all.order('machangbay ASC')
 
-    if @sbdi = params[:di] and   @sbden = params[:den] and  @ngaydi = params[:ngaydi] and @soluong = params[:soluong]
+    if @sbdi = params[:di] and @sbden = params[:den] and @ngaydi = params[:ngaydi]
 
       @noidiObj = Sanbay.all.where(tensanbay: @sbdi).first
       @noidenObj = Sanbay.all.where(tensanbay: @sbden).first
-
-      @temps = Changbay.where(noidi: @noidiObj, noiden: @noidenObj,ngay:  @ngaydi)
-
-      #@temp = Changbay.all.where(noidi: )
+      @temps = Changbay.where(noidi: @noidiObj, noiden: @noidenObj, ngay: @ngaydi)
       render json: @temps
+      elsif @macb = params[:changbayid]
+      render json: Chuyenbay.where(machangbay: @macb)
     end
   end
 
@@ -73,13 +72,13 @@ class ChuyenbaysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chuyenbay
-      @chuyenbay = Chuyenbay.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_chuyenbay
+    @chuyenbay = Chuyenbay.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def chuyenbay_params
-      params.require(:chuyenbay).permit(:machangbay, :giaban, :soluong)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def chuyenbay_params
+    params.require(:chuyenbay).permit(:machangbay, :giaban, :soluong)
+  end
 end
