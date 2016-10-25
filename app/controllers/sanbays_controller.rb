@@ -12,7 +12,6 @@ class SanbaysController < ApplicationController
 
     end
   end
-
   # GET /sanbays/1
   # GET /sanbays/1.json
   def show

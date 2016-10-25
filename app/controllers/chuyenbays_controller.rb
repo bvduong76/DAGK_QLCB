@@ -12,8 +12,10 @@ class ChuyenbaysController < ApplicationController
       @noidenObj = Sanbay.all.where(tensanbay: @sbden).first
       @temps = Changbay.where(noidi: @noidiObj, noiden: @noidenObj, ngay: @ngaydi)
       render json: @temps
-      elsif @macb = params[:changbayid]
+    elsif @macb = params[:changbayid]
       render json: Chuyenbay.where(machangbay: @macb)
+    elsif @macb = params[:changbay] and @gia = params[:gia]
+      render json: Chuyenbay.where(machangbay: @macb , giaban: @gia)
     end
   end
 
